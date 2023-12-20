@@ -14,12 +14,9 @@ import { ListOptions } from "./list-options";
 interface ListHeaderProps {
   data: List;
   onAddCard: () => void;
-};
+}
 
-export const ListHeader = ({
-  data,
-  onAddCard,
-}: ListHeaderProps) => {
+export const ListHeader = ({ data, onAddCard }: ListHeaderProps) => {
   const [title, setTitle] = useState(data.title);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -46,7 +43,7 @@ export const ListHeader = ({
     },
     onError: (error) => {
       toast.error(error);
-    }
+    },
   });
 
   const handleSubmit = (formData: FormData) => {
@@ -63,11 +60,11 @@ export const ListHeader = ({
       id,
       boardId,
     });
-  }
+  };
 
   const onBlur = () => {
     formRef.current?.requestSubmit();
-  }
+  };
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === "Escape") {
@@ -80,18 +77,14 @@ export const ListHeader = ({
   return (
     <div className="pt-2 px-2 text-sm font-semibold flex justify-between items-start- gap-x-2">
       {isEditing ? (
-        <form 
-          ref={formRef}
-          action={handleSubmit}  
-          className="flex-1 px-[2px]"
-        >
+        <form ref={formRef} action={handleSubmit} className="flex-1 px-[2px]">
           <input hidden id="id" name="id" value={data.id} />
           <input hidden id="boardId" name="boardId" value={data.boardId} />
           <FormInput
             ref={inputRef}
             onBlur={onBlur}
             id="title"
-            placeholder="Enter list title.."
+            placeholder="Introduce un título para esta lista..."
             defaultValue={title}
             className="text-sm px-[7px] py-1 h-7 font-medium border-transparent hover:border-input focus:border-input transition truncate bg-transparent focus:bg-white"
           />
@@ -105,10 +98,7 @@ export const ListHeader = ({
           {title}
         </div>
       )}
-      <ListOptions
-        onAddCard={onAddCard}
-        data={data}
-      />
+      <ListOptions onAddCard={onAddCard} data={data} />
     </div>
   );
 };
