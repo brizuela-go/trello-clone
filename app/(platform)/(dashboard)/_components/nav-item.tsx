@@ -2,18 +2,13 @@
 
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
-import {
-  Activity,
-  CreditCard,
-  Layout,
-  Settings,
-} from "lucide-react";
+import { Activity, CreditCard, Layout, Settings } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { 
+import {
   AccordionContent,
-  AccordionItem, 
-  AccordionTrigger
+  AccordionItem,
+  AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -30,7 +25,7 @@ interface NavItemProps {
   isActive: boolean;
   organization: Organization;
   onExpand: (id: string) => void;
-};
+}
 
 export const NavItem = ({
   isExpanded,
@@ -43,22 +38,22 @@ export const NavItem = ({
 
   const routes = [
     {
-      label: "Boards",
+      label: "Tableros",
       icon: <Layout className="h-4 w-4 mr-2" />,
       href: `/organization/${organization.id}`,
     },
     {
-      label: "Activity",
+      label: "Actividad",
       icon: <Activity className="h-4 w-4 mr-2" />,
       href: `/organization/${organization.id}/activity`,
     },
     {
-      label: "Settings",
+      label: "Configuración",
       icon: <Settings className="h-4 w-4 mr-2" />,
       href: `/organization/${organization.id}/settings`,
     },
     {
-      label: "Billing",
+      label: "Cobros",
       icon: <CreditCard className="h-4 w-4 mr-2" />,
       href: `/organization/${organization.id}/billing`,
     },
@@ -69,10 +64,7 @@ export const NavItem = ({
   };
 
   return (
-    <AccordionItem
-      value={organization.id}
-      className="border-none"
-    >
+    <AccordionItem value={organization.id} className="border-none">
       <AccordionTrigger
         onClick={() => onExpand(organization.id)}
         className={cn(
@@ -89,9 +81,7 @@ export const NavItem = ({
               className="rounded-sm object-cover"
             />
           </div>
-          <span className="font-medium text-sm">
-            {organization.name}
-          </span>
+          <span className="font-medium text-sm">{organization.name}</span>
         </div>
       </AccordionTrigger>
       <AccordionContent className="pt-1 text-neutral-700">

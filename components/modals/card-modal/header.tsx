@@ -16,20 +16,18 @@ interface HeaderProps {
   data: CardWithList;
 }
 
-export const Header = ({
-  data,
-}: HeaderProps) => {
+export const Header = ({ data }: HeaderProps) => {
   const queryClient = useQueryClient();
   const params = useParams();
 
   const { execute } = useAction(updateCard, {
     onSuccess: (data) => {
       queryClient.invalidateQueries({
-        queryKey: ["card", data.id]
+        queryKey: ["card", data.id],
       });
 
       queryClient.invalidateQueries({
-        queryKey: ["card-logs", data.id]
+        queryKey: ["card-logs", data.id],
       });
 
       toast.success(`Renamed to "${data.title}"`);
@@ -37,7 +35,7 @@ export const Header = ({
     },
     onError: (error) => {
       toast.error(error);
-    }
+    },
   });
 
   const inputRef = useRef<ElementRef<"input">>(null);
@@ -61,7 +59,7 @@ export const Header = ({
       boardId,
       id: data.id,
     });
-  }
+  };
 
   return (
     <div className="flex items-start gap-x-3 mb-6 w-full">
@@ -77,7 +75,7 @@ export const Header = ({
           />
         </form>
         <p className="text-sm text-muted-foreground">
-          in list <span className="underline">{data.list.title}</span>
+          en la lista <span className="underline">{data.list.title}</span>
         </p>
       </div>
     </div>

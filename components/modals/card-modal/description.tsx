@@ -17,11 +17,9 @@ import { Button } from "@/components/ui/button";
 
 interface DescriptionProps {
   data: CardWithList;
-};
+}
 
-export const Description = ({
-  data
-}: DescriptionProps) => {
+export const Description = ({ data }: DescriptionProps) => {
   const params = useParams();
   const queryClient = useQueryClient();
 
@@ -35,7 +33,7 @@ export const Description = ({
     setTimeout(() => {
       textareaRef.current?.focus();
     });
-  }
+  };
 
   const disableEditing = () => {
     setIsEditing(false);
@@ -56,7 +54,7 @@ export const Description = ({
         queryKey: ["card", data.id],
       });
       queryClient.invalidateQueries({
-        queryKey: ["card-logs", data.id]
+        queryKey: ["card-logs", data.id],
       });
       toast.success(`Card "${data.title}" updated`);
       disableEditing();
@@ -74,22 +72,16 @@ export const Description = ({
       id: data.id,
       description,
       boardId,
-    })
-  }
+    });
+  };
 
   return (
     <div className="flex items-start gap-x-3 w-full">
       <AlignLeft className="h-5 w-5 mt-0.5 text-neutral-700" />
       <div className="w-full">
-        <p className="font-semibold text-neutral-700 mb-2">
-          Description
-        </p>
+        <p className="font-semibold text-neutral-700 mb-2">Descripción</p>
         {isEditing ? (
-          <form
-            action={onSubmit}
-            ref={formRef}
-            className="space-y-2"
-          >
+          <form action={onSubmit} ref={formRef} className="space-y-2">
             <FormTextarea
               id="description"
               className="w-full mt-2"
@@ -99,16 +91,14 @@ export const Description = ({
               ref={textareaRef}
             />
             <div className="flex items-center gap-x-2">
-              <FormSubmit>
-                Save
-              </FormSubmit>
+              <FormSubmit>Guardar</FormSubmit>
               <Button
                 type="button"
                 onClick={disableEditing}
                 size="sm"
                 variant="ghost"
               >
-                Cancel
+                Cancelar
               </Button>
             </div>
           </form>

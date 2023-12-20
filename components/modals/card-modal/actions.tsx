@@ -14,39 +14,37 @@ import { useCardModal } from "@/hooks/use-card-modal";
 
 interface ActionsProps {
   data: CardWithList;
-};
+}
 
-export const Actions = ({
-  data,
-}: ActionsProps) => {
+export const Actions = ({ data }: ActionsProps) => {
   const params = useParams();
   const cardModal = useCardModal();
 
-  const { 
-    execute: executeCopyCard,
-    isLoading: isLoadingCopy,
-  } = useAction(copyCard, {
-    onSuccess: (data) => {
-      toast.success(`Card "${data.title}" copied`);
-      cardModal.onClose();
-    },
-    onError: (error) => {
-      toast.error(error);
-    },
-  });
+  const { execute: executeCopyCard, isLoading: isLoadingCopy } = useAction(
+    copyCard,
+    {
+      onSuccess: (data) => {
+        toast.success(`Card "${data.title}" copied`);
+        cardModal.onClose();
+      },
+      onError: (error) => {
+        toast.error(error);
+      },
+    }
+  );
 
-  const { 
-    execute: executeDeleteCard,
-    isLoading: isLoadingDelete,
-  } = useAction(deleteCard, {
-    onSuccess: (data) => {
-      toast.success(`Card "${data.title}" deleted`);
-      cardModal.onClose();
-    },
-    onError: (error) => {
-      toast.error(error);
-    },
-  });
+  const { execute: executeDeleteCard, isLoading: isLoadingDelete } = useAction(
+    deleteCard,
+    {
+      onSuccess: (data) => {
+        toast.success(`Card "${data.title}" deleted`);
+        cardModal.onClose();
+      },
+      onError: (error) => {
+        toast.error(error);
+      },
+    }
+  );
 
   const onCopy = () => {
     const boardId = params.boardId as string;
@@ -65,12 +63,10 @@ export const Actions = ({
       boardId,
     });
   };
-  
+
   return (
     <div className="space-y-2 mt-2">
-      <p className="text-xs font-semibold">
-        Actions
-      </p>
+      <p className="text-xs font-semibold">Actions</p>
       <Button
         onClick={onCopy}
         disabled={isLoadingCopy}
@@ -79,7 +75,7 @@ export const Actions = ({
         size="inline"
       >
         <Copy className="h-4 w-4 mr-2" />
-        Copy
+        Copiar
       </Button>
       <Button
         onClick={onDelete}
@@ -89,7 +85,7 @@ export const Actions = ({
         size="inline"
       >
         <Trash className="h-4 w-4 mr-2" />
-        Delete
+        Borrar
       </Button>
     </div>
   );

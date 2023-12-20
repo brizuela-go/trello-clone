@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs"
+import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 import { db } from "@/lib/db";
@@ -17,14 +17,14 @@ export const ActivityList = async () => {
       orgId,
     },
     orderBy: {
-      createdAt: "desc"
-    }
+      createdAt: "desc",
+    },
   });
 
   return (
     <ol className="space-y-4 mt-4">
       <p className="hidden last:block text-xs text-center text-muted-foreground">
-        No activity found inside this organization
+        Ninguna actividad reciente
       </p>
       {auditLogs.map((log) => (
         <ActivityItem key={log.id} data={log} />

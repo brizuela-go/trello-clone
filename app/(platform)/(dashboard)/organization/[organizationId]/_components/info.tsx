@@ -8,17 +8,13 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 interface InfoProps {
   isPro: boolean;
-};
+}
 
-export const Info = ({
-  isPro,
-}: InfoProps) => {
+export const Info = ({ isPro }: InfoProps) => {
   const { organization, isLoaded } = useOrganization();
 
   if (!isLoaded) {
-    return (
-      <Info.Skeleton />
-    );
+    return <Info.Skeleton />;
   }
 
   return (
@@ -32,12 +28,10 @@ export const Info = ({
         />
       </div>
       <div className="space-y-1">
-        <p className="font-semibold text-xl">
-          {organization?.name}
-        </p>
+        <p className="font-semibold text-xl">{organization?.name}</p>
         <div className="flex items-center text-xs text-muted-foreground">
           <CreditCard className="h-3 w-3 mr-1" />
-          {isPro ? "Pro" : "Free"}
+          {isPro ? "Pro" : "Gratis"}
         </div>
       </div>
     </div>
