@@ -4,13 +4,11 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ModalProvider } from "@/components/providers/modal-provider";
 import { QueryProvider } from "@/components/providers/query-provider";
 
-const PlatformLayout = ({
-  children
-}: {
-  children: React.ReactNode;
-}) => {
+import { esES } from "@clerk/localizations";
+
+const PlatformLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <ClerkProvider>
+    <ClerkProvider localization={esES}>
       <QueryProvider>
         <Toaster />
         <ModalProvider />
